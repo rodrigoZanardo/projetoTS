@@ -1,0 +1,512 @@
+{
+	"info": {
+		"_postman_id": "c00bce25-483c-4e31-b436-0a07b2e64311",
+		"name": "SA3",
+		"description": "Sistema de Aprovação Automatizado de APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Redirects the user to the IdP/SSO auth page."
+			},
+			"response": []
+		},
+		{
+			"name": "/users/self",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/users/self",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						"self"
+					]
+				},
+				"description": "Receives the auth code after the IdP/SSO redirected the user."
+			},
+			"response": []
+		},
+		{
+			"name": "/proxies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/proxies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"proxies"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "sortOrder",
+							"value": "ASC",
+							"description": "DESC (default), ASC",
+							"disabled": true
+						},
+						{
+							"key": "sortType",
+							"value": "tsModified",
+							"description": "tsCreated (default), tsModified, name",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "DRAFT",
+							"description": "DRAFT, OK, NOK",
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "DP-123",
+							"description": "Código do Jira",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Returns a list of proxies, with the data redacted according to the user's group."
+			},
+			"response": []
+		},
+		{
+			"name": "/proxies/pendencies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/proxies/pendencies?all=true",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"proxies",
+						"pendencies"
+					],
+					"query": [
+						{
+							"key": "all",
+							"value": "true",
+							"description": "Return all results or just unresolved ones (default)"
+						}
+					]
+				},
+				"description": "Returns a list of proxies, with the data redacted according to the user's group."
+			},
+			"response": []
+		},
+		{
+			"name": "/proxies/names",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/proxies/names",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"proxies",
+						"names"
+					]
+				},
+				"description": "Returns a list of proxies, with the data redacted according to the user's group."
+			},
+			"response": []
+		},
+		{
+			"name": "/proxies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"qualiData\": {\r\n    \"apiProducer\": \"Fulano de tal\",\r\n    \"emailRecipients\": [\r\n      \"exemplo@claro.com.br\"\r\n    ],\r\n    \"reason\": \"adição do consumidor ABCDE\"\r\n  },\r\n  \"proxyData\": {\r\n    \"name\": \"domains-changeme-1\",\r\n    \"status\": \"OK\",\r\n    \"requiresManualApproval\": false,\r\n    \"project\": \"DP-124\",\r\n    \"consumers\": [\r\n      {\r\n        \"id\": \"c3768a25-a19e-4752-8925-1844a39ed201\",\r\n        \"name\": \"MCR App\",\r\n        \"desc\": \"\",\r\n        \"attributes\": {}\r\n      },\r\n      {\r\n        \"id\": \"1671a0cf-6375-4450-b8d8-b5df4e5192d2\",\r\n        \"name\": \"URA\",\r\n        \"desc\": \"\",\r\n        \"attributes\": {}\r\n      }\r\n    ],\r\n    \"backends\": [\r\n      {\r\n        \"id\": \"1671a0cf-6375-4450-b8d8-b5df4e5192d3\",\r\n        \"name\": \"Fachada NETSMS\",\r\n        \"desc\": \"\",\r\n        \"auth\": \"basic\"\r\n      }\r\n    ],\r\n    \"methods\": [\r\n      {\r\n        \"id\": \"5058b0c8-6f66-4985-9f34-e43ba2877d74\",\r\n        \"verb\": \"GET\",\r\n        \"path\": \"/aadsasd/fff/{cpf}\",\r\n        \"objective\": \"retornar a quantidade de contratos para um certo cpf\",\r\n        \"request\": \"cpf\",\r\n        \"response\": \"array de contratos com endereço\"\r\n      }\r\n    ],\r\n    \"pendingActions\": [\r\n      {\r\n        \"id\": \"7c14d9e7-6f3f-49df-a9b2-24c6b47742a5\",\r\n        \"resolved\": false,\r\n        \"startDate\": \"2022-03-28T08:26:24.631Z\",\r\n        \"deadlineDurationDays\": 30,\r\n        \"description\": \"remover campo \\\"blabla\\\" da resposta.\"\r\n      },\r\n      {\r\n        \"id\": \"7c14d9e7-6f3f-49df-a9b2-24c6b4666xx6\",\r\n        \"resolved\": true,\r\n        \"startDate\": \"2022-03-26T08:26:24.631Z\",\r\n        \"deadlineDurationDays\": 90,\r\n        \"description\": \"exemplo resolvido\"\r\n      },\r\n      {\r\n        \"id\": \"7c14d9e7-6f3f-49df-a9b2-24c6b4774xx7\",\r\n        \"resolved\": false,\r\n        \"startDate\": \"wait_prod\",\r\n        \"deadlineDurationDays\": 90,\r\n        \"description\": \"adicionar cripto no campo XXX.\"\r\n      }\r\n    ],\r\n    \"notes\": {\r\n      \"sit\": \"\",\r\n      \"test\": \"\",\r\n      \"public\": \"\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/proxies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"proxies"
+					]
+				},
+				"description": "Registers a new proxy."
+			},
+			"response": []
+		},
+		{
+			"name": "/proxies/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/proxies/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"proxies",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6241dcb2dcdc4794d7e3ea0d"
+						}
+					]
+				},
+				"description": "Returns a proxy, with the data redacted according to the user's group."
+			},
+			"response": []
+		},
+		{
+			"name": "/proxies/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"qualiData\": {\r\n        \"apiProducer\": \"Fulano de tal3\",\r\n        \"emailRecipients\": [\r\n            \"aaa@bb.com\",\r\n            \"andre@xxxx.com\"\r\n        ],\r\n        \"reason\": \"teste edição de proxy\"\r\n    },\r\n    \"proxyData\": {\r\n        \"name\": \"domains-changeme-2\",\r\n        \"status\": \"OK\",\r\n        \"requiresManualApproval\": false,\r\n        \"project\": \"DP-124\",\r\n        \"consumers\": [\r\n            {\r\n                \"id\": \"c3768a25-a19e-4752-8925-1844a39ed201\",\r\n                \"name\": \"MCR App\",\r\n                \"desc\": \"\",\r\n                \"attributes\": {}\r\n            },\r\n            {\r\n                \"id\": \"1671a0cf-6375-4450-b8d8-b5df4e5192d2\",\r\n                \"name\": \"URA\",\r\n                \"desc\": \"\",\r\n                \"attributes\": {}\r\n            }\r\n        ],\r\n        \"backends\": [\r\n            {\r\n                \"id\": \"1671a0cf-6375-4450-b8d8-b5df4e5192d3\",\r\n                \"name\": \"Fachada NETSMS\",\r\n                \"desc\": \"\",\r\n                \"auth\": \"basic\"\r\n            }\r\n        ],\r\n        \"methods\": [\r\n            {\r\n                \"id\": \"5058b0c8-6f66-4985-9f34-e43ba2877d74\",\r\n                \"verb\": \"GET\",\r\n                \"path\": \"/aadsasd/fff/{cpf}\",\r\n                \"objective\": \"retornar a quantidade de contratos para um certo cpf\",\r\n                \"request\": \"cpf\",\r\n                \"response\": \"array de contratos com endereço\"\r\n            }\r\n        ],\r\n        \"pendingActions\": [\r\n            {\r\n                \"id\": \"7c14d9e7-6f3f-49df-a9b2-24c6b47742a5\",\r\n                \"resolved\": false,\r\n                \"startDate\": \"2022-03-28T08:26:24.631Z\",\r\n                \"deadlineDurationDays\": 30,\r\n                \"description\": \"remover campo \\\"blabla\\\" da resposta.\"\r\n            },\r\n            {\r\n                \"id\": \"7c14d9e7-6f3f-49df-a9b2-24c6b4666xx6\",\r\n                \"resolved\": true,\r\n                \"startDate\": \"2022-03-26T08:26:24.631Z\",\r\n                \"deadlineDurationDays\": 90,\r\n                \"description\": \"exemplo resolvido\"\r\n            },\r\n            {\r\n                \"id\": \"7c14d9e7-6f3f-49df-a9b2-24c6b4774xx7\",\r\n                \"resolved\": false,\r\n                \"startDate\": \"wait_prod\",\r\n                \"deadlineDurationDays\": 90,\r\n                \"description\": \"adicionar cripto no campo XXX.\"\r\n            }\r\n        ],\r\n        \"notes\": {\r\n            \"sit\": \"\",\r\n            \"test\": \"\",\r\n            \"public\": \"\"\r\n        }\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/proxies/:id?tsReference=2022-03-28T16:05:06.148Z",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"proxies",
+						":id"
+					],
+					"query": [
+						{
+							"key": "tsReference",
+							"value": "2022-03-28T16:05:06.148Z"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6241dcb2dcdc4794d7e3ea0d"
+						}
+					]
+				},
+				"description": "Updates an proxy."
+			},
+			"response": []
+		},
+		{
+			"name": "/proxies/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/proxies/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"proxies",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6241c59f38fb1069c510981f"
+						}
+					]
+				},
+				"description": "Removes an proxy."
+			},
+			"response": []
+		},
+		{
+			"name": "/history",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/history",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"history"
+					],
+					"query": [
+						{
+							"key": "proxyId",
+							"value": "6241c36b85a233ad3ee7f066",
+							"disabled": true
+						},
+						{
+							"key": "proxyName",
+							"value": "domains-blabla2-1",
+							"disabled": true
+						},
+						{
+							"key": "date",
+							"value": "2022-04-12",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Returns a list of log entries for Qualifications, Deploys and Audits according to a filter. The returned data will be redacted based on the user group."
+			},
+			"response": []
+		},
+		{
+			"name": "/history/minutes/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/history/minutes/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"history",
+						"minutes",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "61ef3a150c14b9d603e35b2e"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "sa3hml.portalsit.com.br:6174"
+		},
+		{
+			"key": "token",
+			"value": "no-default"
+		}
+	]
+}

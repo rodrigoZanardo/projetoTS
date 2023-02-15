@@ -1,0 +1,49 @@
+{
+  "env": "development",
+  "authenticator": {
+    "tennantId": "55247d4b-b435-47a5-881b-ca7627434e79",
+    "clientId": "e8e86725-a7e6-4d1e-a892-c3f9947b9aaa",
+    "jwksUrl": "https://login.microsoftonline.com/common/discovery/keys",
+    "jwksRefreshInterval": 86400,
+    "awsCicdCredsParameter": false,
+    "ccidCreds": [
+      {
+        "id": "teste_local",
+        "token": "00000000000deadbeef"
+      }
+    ]
+  },
+  "webServer": {
+    "port": 6174,
+    "domain": "sa3.portalsit.com.br",
+    "enableHelmet": false,
+    "checkCORS": false,
+    "trustProxy": false
+  },
+  "mongodb": {
+    "awsCredsParameter": false,
+    "uri": "mongodb+srv://usr_sa3_back:Vgr2j2cJGXrkQqDk@cluster0.dqk2x.mongodb.net/sa3?retryWrites=true&w=majority",
+    "host": "127.0.0.1:27017",
+    "database": "sa3"
+  },
+  "logger": {
+    "printLevel": "http",
+    "json": false
+  },
+  "email": {},
+  "apigee": {},
+  "jiraService_dev": {
+    "baseUrl": "https://sit-projetos-sandbox-515.atlassian.net/rest/api/2",
+    "projectId": "10001",
+    "issueType": "10005",
+    "username": "weslley.revnei.terceiros@claro.com.br",
+    "password": "vCvOuAcevcQruzl7d7FVCAD0"
+  },
+  "jiraService": {
+    "baseUrl": "https://sit-projetos.atlassian.net/rest/api/2",
+    "projectId": "10030",
+    "issueType": "10019",
+    "username": "weslley.revnei@sysmap.com.br",
+    "password": "pJ05FfYBjW8NVMLTJLEz7056"
+  }
+}

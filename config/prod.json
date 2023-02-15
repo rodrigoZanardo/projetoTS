@@ -1,0 +1,33 @@
+{
+    "env": "production",
+    "authenticator": {
+        "tennantId": "55247d4b-b435-47a5-881b-ca7627434e79",
+        "clientId": "f74d191c-5a01-478e-86ac-d9fde1f1ac95",
+        "jwksUrl": "https://login.microsoftonline.com/common/discovery/keys",
+        "jwksRefreshInterval": 86400,
+        "awsCicdCredsParameter": "sa3-cicd-creds"
+    },
+    "webServer": {
+        "port": 6174,
+        "domain": "sa3.portalsit.com.br",
+        "enableHelmet": true,
+        "checkCORS": true,
+        "trustProxy": 2
+    },
+    "mongodb": {
+        "awsCredsParameter": "sa3-mongodb-config"
+    },
+    "logger": {
+        "printLevel": "info",
+        "json": true
+    },
+    "email": {},
+    "apigee": {},
+    "jiraService": {
+        "baseUrl": "https://sit-projetos.atlassian.net/rest/api/2",
+        "projectId": "10030",
+        "issueType": "10019",
+        "username": "system_user",
+        "password": "0GCykqoSNfCKX9sb6KI397A8"
+    }
+}

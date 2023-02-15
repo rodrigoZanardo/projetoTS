@@ -1,0 +1,75 @@
+[
+    meta: {
+        tsCreated: Date,
+        tsModified: Date,
+        nameHistory: [] //backend adiciona string quando o POST faz alguma alteração
+    },
+    _id: ObjectID(),
+    name: "domains-xxxxxxxx-v1",
+    status: "DRAFT/OK/NOK/DEPRECATED", //definir quais os status possíveis
+    project: ["DP-123"],
+    requiresManualApproval: true/false,
+    consumers: [
+        {
+            id: *UUID,
+            name: "blabla",
+            desc: "",
+            attributes: {
+                authClient: string, //valores válidos: key, oauth, basic, netflix, naoinformado
+                authUser: false/string, //valores válidos: idmtoken, employeeidmtoken, netsmsoperator, claroid
+                additional: string[], //valores válidos: allowedips, captcha, responsefields, allowedvalues, sfauthorization
+                allowedVerbs: false/string[], // min length 1 false ou string array de metodos http, sem duplicados, com valores possíveis GET, POST, PUT, DELETE, PATCH
+            }
+        }
+    ],
+    backends: [
+        {
+            id: *UUID
+            name: "",
+            desc: "",
+            auth: "" //string
+        }
+    ],
+    type_consumption:[""] //valores válidos: ["c2c", "interno", "outbound", "inbound", "m2m", "public", "confidential"]
+    methods: [
+        {
+            id: *UUID
+            verb: "POST",
+            path: "/aadsasd/fff/{id}",
+            objective: "sdfsdfsdfsdf",
+            request: "",
+            response: "",
+
+            //FIXME: Cortado
+            consumers: ["xxx", ...],
+            backends: ["TS-soaMobile", ...]
+        }
+    ],
+    pendingActions: [
+        {
+            id: *UUID, // << campo novo
+            status: "" // OFF-SIDE | ACTION-PLAN | NO-CORRECTION
+            resolved: true/false,
+            startDate: "", // Date.toJSON()
+            deadlineDurationDays: ""  //número de dias pra essa pendência ficar marcada como vermelho
+            desc: ""
+            criticality:"" // LOW | MEDIUM | HIGH | CRITIC
+        }
+    ],
+    notes: {
+        public: [
+            {
+                "id": "f01575a3-d2a0-451d-b2f9-4ce0bb44855f", //uuid
+                "label":"teste" // texto
+            }
+        ]
+        sit: "",
+        test: "",
+    }
+    alterations:[
+        {
+            "id": "f01575a3-d2a0-451d-b2f9-4ce0bb44855f", //uuid
+            "label":"teste" // texto
+        }
+    ]
+]

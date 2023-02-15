@@ -1,0 +1,52 @@
+[
+    // data/hora muted pra todos os tipos, o proxy name strong só pra qualificação
+    // apenas uma linha por log
+    // no modal, colocar link pro proxy
+    // a api vai retornar o proxy (id) e proxyName
+
+
+    {
+        ts: 1605266751,
+        meta: {
+            type: "QUALIFICATION",
+            proxy: *UUID,
+        }
+        status: "OK", //[DRAFT, OK, NOK, DEPRECATED] qual era o status do proxy ao final da reunião
+        analyst: "andre.brandao.terceiros@claro.com.br",
+        apiProducer: "Fulano da Silva",
+        emailRecipients: "aaa@aaa.com; bbb@bbb.com;", //ou false se não houve envio de ata
+        reason: "mudança do nome do proxy"
+    },
+    //<span class="text-muted">[${dataHora}]</span> [QUALI] ${pillStatus} <strong>${proxyName}</strong> by ${analyst}
+
+    {
+        ts: 1605266752,
+        meta: {
+            type: "DEPLOY_REQUEST",
+            proxy: *UUID, //ou false se o proxy não foi encontrado
+        }
+        response: "DENY", //[ALLOW, DENY, MANUAL, ERROR]
+        reason: "proxy não qualificado" //ou false se não tiver comentário
+    },
+    //[${dataHora}][DEPLOY] ${pillResponse} ${proxyName}: ${reason}
+    
+    {
+        ts: 1605266753,
+        meta: {
+            type: "AUDIT_DEPLOY",
+            proxy: *UUID, //ou false se o proxy não foi encontrado. Caso false, gerar alerta
+        }
+        data: {} //any relevant data
+    },
+    //[${dataHora}][AUDIT_DEPLOY] ${JSON.stringify(data)}
+
+    {
+        ts: 1605266754,
+        meta: {
+            type: "AUDIT_NEW_CONSUMER",
+            proxy: *UUID, //ou false se o proxy não foi encontrado. Caso false, gerar alerta
+        }
+        data: {} //any relevant data
+    }
+    //[${dataHora}][AUDIT_NEW_CONSUMER] ${JSON.stringify(data)}
+]

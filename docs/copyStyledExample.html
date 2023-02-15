@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://github.com/lgarron/clipboard-polyfill/releases/download/v2.8.5/clipboard-polyfill.promise.js"></script> -->
+    <style>
+        body{
+            font-family: monospace;
+            font-size: larger;
+        }
+        .proxy > h4{
+            margin-bottom: 0px;
+        }
+        .proxy > ul{
+            margin-top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="proxy-card">
+        <div id="foo" class="proxy">
+            <h4 class="proxy-name">&gt; mobile-outages-v1</h4>
+            <ul>
+                <li><b>Objetivo:</b> yyyyyyyyyyyy</li>
+                <li><b>Consumidor + auth:</b> 
+                    <ul>
+                        <li>URA: OAuth</li>
+                        <li><mark style="background-color: yellow;">App/Site MCR: key + Token do IdM</mark></li>
+                        <li>Blip WhatsApp Público: key + Token do IdM</li>
+                    </ul>
+                </li>
+                <li><b>Backend + auth:</b> Icaro (basic)</li>
+                <li><b>Tipo:</b> Inbound e Interno</li>
+                <li><b>GET /outages</b>:
+                    <ul>
+                        <li><b>Req:</b> msisdn</li>
+                        <li><b>Res:</b> true/false, previsão, protocolo</li>
+                    </ul>
+                </li>
+                <li><b>Nota:</b> para os cenários de consumo públicos, fazer autorização no MSISDN.</li>
+                <li><b>LT:</b> Felipe Tanabe</li>
+                <li><b style="background-color: red;">SIT:</b> bla bla bla</li>
+            </ul>
+        </div>
+    </div>
+    <button onclick="copyToClip(document.getElementById('foo').innerHTML)">
+        Copy the stuff
+    </button>
+    
+    <script>
+        function copyToClip(str) {
+            function listener(e) {
+                e.clipboardData.setData("text/html", str);
+                e.clipboardData.setData("text/plain", str);
+                e.preventDefault();
+            }
+            document.addEventListener("copy", listener);
+            document.execCommand("copy");
+            document.removeEventListener("copy", listener);
+        };
+    </script>
+</body>
+
+</html>
