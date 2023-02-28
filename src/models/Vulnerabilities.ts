@@ -23,6 +23,6 @@ const VulnerabilitiesSchema = new Schema(
   }
 )
 
- const mongose = mongoose.model('vulnerabilities', VulnerabilitiesSchema);
+const mongose = mongoose.model('vulnerabilities', VulnerabilitiesSchema);
 
- export class vulnerabilities {}
+export class vulnerabilities { }
